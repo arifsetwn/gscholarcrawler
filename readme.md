@@ -1,56 +1,59 @@
-# Google Scholar Crawler
+# Google Scholar Publication Crawler
 
-Aplikasi ini digunakan untuk mengambil (crawling) data publikasi dari akun Google Scholar berdasarkan ID user dan tahun publikasi tertentu. Data hasil crawling akan disimpan dalam file Excel dan divisualisasikan dalam bentuk word cloud dari judul publikasi.
+Script Python untuk crawling data publikasi dari Google Scholar berdasarkan ID user dan tahun publikasi.
 
-## Fitur
-- Mengambil data publikasi berdasarkan ID Google Scholar dan tahun publikasi.
-- Menyimpan metadata publikasi ke file Excel (`output.xlsx`).
-- Membuat dan menyimpan word cloud dari judul publikasi (`wordcloud.png`).
-- Filtering otomatis berdasarkan tahun yang diinputkan (tunggal atau rentang tahun).
+## Instalasi
 
-## Cara Instalasi
-
-1. **Clone repository atau salin file script ke folder lokal Anda.**
-2. **Install dependencies berikut di terminal:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## Cara Penggunaan
-
-### Contoh Penggunaan di Terminal
-
+1. Install dependencies:
 ```bash
-# Rentang tahun 2020-2023
-python google_scholar_crawler.py SCHOLAR_ID --start-year 2020 --end-year 2023
-
-# Mulai dari tahun 2020
-python google_scholar_crawler.py SCHOLAR_ID --start-year 2020
-
-# Sampai tahun 2023
-python google_scholar_crawler.py SCHOLAR_ID --end-year 2023
-
-# Tahun tunggal (cara lama tetap work)
-python google_scholar_crawler.py l1JmHE8AAAAJ --year 2025
+pip install -r requirements.txt
 ```
 
-Gantilah `SCHOLAR_ID` dengan ID Google Scholar yang ingin Anda crawl.
+## Penggunaan
+
+### Command Line
+```bash
+  # Rentang tahun 2020-2023
+  python google_scholar_crawler.py SCHOLAR_ID
+  --start-year 2020 --end-year 2023
+
+  # Mulai dari tahun 2020
+  python google_scholar_crawler.py SCHOLAR_ID
+  --start-year 2020
+
+  # Sampai tahun 2023
+  python google_scholar_crawler.py SCHOLAR_ID
+  --end-year 2023
+
+  # Tahun tunggal (cara lama tetap work)
+  python google_scholar_crawler.py l1JmHE8AAAAJ --year 2025
+```
+
+### Parameter
+- `scholar_id`: ID Google Scholar (wajib)
+- `--year`: Tahun publikasi yang ingin difilter (opsional)
+- `--output`: Nama file Excel output (default: output.xlsx)
+- `--wordcloud`: Nama file word cloud output (default: wordcloud.png)
 
 ## Output
 
-- **output.xlsx**  
-  Berisi data publikasi pada tahun yang dipilih, dengan kolom:
-  - Judul
-  - Nama Jurnal / Konferensi
-  - Tahun
-  - Penulis
-  - Kutipan
+Script akan menghasilkan:
+1. **File Excel** dengan kolom:
+   - Judul
+   - Nama Jurnal/Konferensi
+   - Tahun
+   - Penulis
+   - Kutipan
 
-- **wordcloud.png**  
-  Visualisasi word cloud dari kata kunci judul publikasi tahun tersebut.
+2. **Word Cloud** dari kata kunci dalam judul publikasi
 
-## Catatan
+## Contoh Penggunaan
 
-- Pastikan ID Google Scholar valid dan publikasi pada tahun yang diminta tersedia.
-- Jika tidak ada publikasi pada tahun tersebut, file output tidak akan dibuat.
-- Script ini hanya mengambil data publikasi yang
+```bash
+python google_scholar_crawler.py CJMh47UAAAAJ --year 2022
+```
+
+Script ini akan:
+- Mengambil semua publikasi dari scholar ID `CJMh47UAAAAJ` tahun 2022
+- Menyimpan data ke `output.xlsx`
+- Membuat word cloud dan menyimpan ke `wordcloud.png`
